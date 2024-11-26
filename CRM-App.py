@@ -56,30 +56,30 @@ This app allows you to:
 st.sidebar.header("Upload Options")
 train_file = st.sidebar.file_uploader("Upload Training Data (CSV)", type=["csv"])
 val_file = st.sidebar.file_uploader("Upload Validation Data (CSV)", type=["csv"])
-tweets_file = st.sidebar.file_uploader("Upload Twitter Dataset (CSV)", type=["csv"])
+Datasets_file = st.sidebar.file_uploader("Upload Twitter Dataset (CSV)", type=["csv"])
 
-if train_file and val_file and tweets_file:
+if train_file and val_file and Datasets_file:
     # Load uploaded files
     train_df = pd.read_csv(train_file)
     val_df = pd.read_csv(val_file)
-    tweets_df = pd.read_csv(tweets_file)
+    Datasets_df = pd.read_csv(Datasets_file)
     
     # Display sample data
-    st.write("### Sample Data from Training Dataset")
+    st.write("### Data from Training Dataset")
     st.write(train_df.head())
 
     # Preprocess data
     st.write("### Preprocessing Data...")
     train_df = preprocess_data(train_df)
     val_df = preprocess_data(val_df)
-    tweets_df = preprocess_data(tweets_df)
+    Datasets_df = preprocess_data(Datasets_df)
 
     # TF-IDF Vectorization
     st.write("### Vectorizing Text Data...")
     tfidf = TfidfVectorizer(max_features=5000)
     X_train = tfidf.fit_transform(train_df['cleaned_text'])
     X_val = tfidf.transform(val_df['cleaned_text'])
-    X_tweets = tfidf.transform(tweets_df['cleaned_text'])
+    X_Datasets = tfidf.transform(Datasets_df['cleaned_text'])
     y_train = train_df.iloc[:, 2]
     y_val = val_df.iloc[:, 2]
 
@@ -91,13 +91,13 @@ if train_file and val_file and tweets_file:
     st.write(f"Model Accuracy: **{accuracy:.2f}**")
 
     # Prediction on Tweets Dataset
-    tweets_df['predicted_sentiment'] = model.predict(X_tweets)
-    st.write("### Predictions on New Tweets")
-    st.write(tweets_df[['user_name', 'text', 'predicted_sentiment']].head())
+    Datasets_df['predicted_sentiment'] = model.predict(X_Datasets)
+    st.write("### Predictions on New Reviews")
+    st.write(Datasets_df[['user_name', 'text', 'predicted_sentiment']].head())
 
     # Visualization
     st.write("### Sentiment Distribution")
-    sentiment_counts = tweets_df['predicted_sentiment'].value_counts()
+    sentiment_counts = Datasets_df['predicted_sentiment'].value_counts()
     st.bar_chart(sentiment_counts)
 
 else:
