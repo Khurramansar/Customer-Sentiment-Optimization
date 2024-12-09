@@ -25,7 +25,7 @@ To run this project, follow these steps:
    ```bash
    git clone https://github.com/Khurramansar/Customer-Sentiment-Optimization
 2. Install the required packages: pip install -r requirements.txt
-Streamlit App:https://customer-sentiment-optimization-xgvfy5pqbka8sje5zetsjn.streamlit.app/
+Streamlit App: https://customer-sentiment-optimization-xgvfy5pqbka8sje5zetsjn.streamlit.app/
 ## Usage
 Load the datasets into your environment.
 Run the data preprocessing scripts to clean and prepare the data.
