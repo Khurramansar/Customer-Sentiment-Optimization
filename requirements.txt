@@ -4,5 +4,3 @@ scikit-learn==1.2.2
 NLTK==3.9.1
 Matplotlib==3.8.0
 Seaborn==0.12.2
-Joblib==1.2.0
-textblob
